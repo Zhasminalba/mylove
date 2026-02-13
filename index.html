@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>moyalybov 💗</title>
+<style>
+:root{
+    --rozoviy-fon:#fadadd;
+    --bordoviy-fon:#5a000f;
+    --zeleniy-lybov:#3ad46d;
+    --krasniy-beda:#ff3b58;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Comic Sans MS', cursive;
+}
+
+body.moyalybov-ilyas{
+    background:var(--rozoviy-fon);
+    overflow:hidden;
+    text-align:center;
+    height:100vh;
+    transition:1s ease;
+}
+.kartochka{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    transition:.8s ease;
+}
+.skryt{
+    opacity:0;
+    pointer-events:none;
+    transform:translateX(-100%);
+}
+
+.glavnoe-serdse, .medvejata-parochka{
+    width:260px;
+    border-radius:20px;
+    margin-bottom:20px;
+}
+
+.ot-jeny{
+    font-size:22px;
+    margin-top:20px;
+}
+
+.strelka-vpered{
+    font-size:40px;
+    margin-top:30px;
+    cursor:pointer;
+    animation:dyshi 1.5s infinite;
+}
+
+@keyframes dyshi{
+    50%{transform:scale(1.2);}
+}
+
+.voprosik{
+    font-size:20px;
+    margin:15px 0;
+}
+
+.knopka{
+    border:none;
+    padding:12px 24px;
+    font-size:16px;
+    border-radius:30px;
+    cursor:pointer;
+    margin:10px;
+    color:white;
+    transition:.4s;
+}
+.zel{background:var(--zeleniy-lybov);}
+.kras{background:var(--krasniy-beda);}
+
+.final-tekst{
+    font-size:28px;
+    font-style:italic;
+    margin-top:20px;
+}
+
+.smert-fon{
+    background:var(--bordoviy-fon);
+    animation:temnota 2s forwards;
+}
+@keyframes temnota{
+    from{filter:brightness(1);}
+    to{filter:brightness(.6);}
+}
+.krov-container{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:200px;
+    pointer-events:none;
+    overflow:hidden;
+}
+
+.kaplya{
+    position:absolute;
+    top:-60px;
+    width:14px;
+    background:#8b0000;
+    border-radius:10px;
+    animation:stekanie 3s linear forwards;
+}
+
+@keyframes stekanie{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(300px);}
+}
+</style>
+</head>
+
+<body class="moyalybov-ilyas">
+<div class="kartochka" id="kart1">
+    <img class="glavnoe-serdse" 
+    src="https://s182.convertio.me/p/D9Dqk8skyLpnH0QERz5vEA/54a3ff4d3157dd5d38abfc52e15a7d5a/love1.gif"
+    alt="сердце">
+    <div class="ot-jeny">От жены Ильяса🤍</div>
+    <div class="strelka-vpered" id="goNext">➡️</div>
+</div>
+<div class="kartochka skryt" id="kart2">
+    <img class="medvejata-parochka" id="mishki"
+    src="https://media1.giphy.com/media/v1.Y2lkPTZjMDliOTUydTIwYXNvanBobXRiMGcwamdneGVqZWtiejBnNjBwM3QxcGJpZWhnMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qFmdpUKAFZ6rMobzzu/giphy.gif"
+    alt="медвежата">
+    <div class="voprosik" id="vopros">Ты меня любишь?</div>
+    <button class="knopka zel" id="zelBtn">Люблю конечно🤍</button>
+    <button class="knopka kras" id="krasBtn">Неа</button>
+</div>
+<script>
+const kart1 = document.getElementById('kart1');
+const kart2 = document.getElementById('kart2');
+const goNext = document.getElementById('goNext');
+const zelBtn = document.getElementById('zelBtn');
+const krasBtn = document.getElementById('krasBtn');
+const mishki = document.getElementById('mishki');
+const vopros = document.getElementById('vopros');
+let greenClicks = 0;
+let redClicks = 0;
+goNext.onclick = () => {
+    kart1.classList.add("skryt");
+    kart2.classList.remove("skryt");
+};
+
+zelBtn.onclick = () => {
+    greenClicks++;
+
+    if(greenClicks === 1){
+        zelBtn.style.transform="scale(2)";
+        zelBtn.textContent="Точно??";
+        mishki.src = "https://media1.giphy.com/media/v1.Y2lkPTZjMDliOTUyMjZveGwxYzVxOHYydzlsdmltbTVwdmxqaWE4NHYzOTAwYnI5cHZscyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qFmdpUKAFZ6rMobzzu/giphy.gif";
+    }
+    else if(greenClicks === 2){
+        zelBtn.style.transform="scale(3)";
+        zelBtn.textContent="Точно при точно";
+      
+    }
+    else if(greenClicks >= 3){
+        mishki.src = "https://media1.giphy.com/media/v1.Y2lkPTZjMDliOTUyMjZveGwxYzVxOHYydzlsdmltbTVwdmxqaWE4NHYzOTAwYnI5cHZscyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qFmdpUKAFZ6rMobzzu/giphy.gif";
+        zelBtn.style.display="none";
+        krasBtn.style.display="none";
+        vopros.innerHTML="💗";
+        const final=document.createElement("div");
+        final.className="final-tekst";
+        final.innerHTML="«ура, вместе навсегда❤️ (иначе никак, хех)»";
+        kart2.appendChild(final);
+    }
+};
+krasBtn.onclick = () => {
+    redClicks++;
+
+    if(redClicks === 1){
+        krasBtn.style.transform="scale(1.5)";
+        krasBtn.textContent="как не любишь ало";
+        mishki.src = "https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUydWIzYXhpcDNxc2pvZ2V4c3Z3ZzRudGRjOWV0d29rbTFkYjE3cDZ6NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hzlBq97pwttFyxm15C/giphy.gif"; // Angry GIF
+    }
+    else if(redClicks === 2){
+        krasBtn.style.transform="scale(1.7)";
+        krasBtn.textContent="я если поделюсь чуть чуть чипсиками :(";
+    }
+    else if(redClicks === 3){
+        krasBtn.style.transform="scale(2)";
+        krasBtn.textContent="ты офигел что ли?";
+    }
+    else if(redClicks >= 4){
+       
+        mishki.src = "https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUyOXQwYTh1MWo2YnM2MTBtc2ltdmlzcnEwMGtkYzBzZDZzcTI5a2piaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mi4ec226vjAkehSLk0/giphy.gif";
+        
+        document.body.classList.add("smert-fon");
+
+        setTimeout(()=>{
+            document.body.innerHTML=`
+                <div class="krov-container" id="krov"></div>
+                <div class="kartochka">
+                    <img class="medvejata-parochka"
+                    src="https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUydWIzYXhpcDNxc2pvZ2V4c3Z3ZzRudGRjOWV0d29rbTFkYjE3cDZ6NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hzlBq97pwttFyxm15C/giphy.gif"
+                    alt="хоррор">
+                    <div class="final-tekst">
+                        🔪 смерть 🔪 <br><br>
+                        время смерти: лето <br>
+                        город Алма-Ата
+                    </div>
+                </div>
+            `;
+
+            const krov = document.getElementById("krov");
+            for(let i=0;i<30;i++){
+                const kaplya=document.createElement("div");
+                kaplya.className="kaplya";
+                kaplya.style.left=Math.random()*100+"vw";
+                kaplya.style.animationDelay=Math.random()*2+"s";
+                kaplya.style.height=40+Math.random()*80+"px";
+                krov.appendChild(kaplya);
+            }
+        }, 3000); 
+    }
+};
+</script>
+
+</body>
+</html
